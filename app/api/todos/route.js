@@ -1,8 +1,21 @@
-const todos = [{todo:"1"},{todo:"2"},{todo:"3"},{todo:"4"},{todo:"5"},{todo:"6"},{todo:"7"},{todo:"8"},{todo:"1"},{todo:"8"},{todo:"9"},{todo:"10"},{todo:"11"},]
+const todos = [
+    { todo: "Todo 1", status: "active" },
+    { todo: "Todo 2", status: "pending" },
+    { todo: "Todo 3", status: "active" },
+    { todo: "Todo 4", status: "active" },
+    { todo: "Todo 5", status: "pending" },
+    { todo: "Todo 6", status: "active" },
+    { todo: "Todo 7", status: "active" },
+    { todo: "Todo 8", status: "active" },
+    { todo: "Todo 1", status: "active" },
+    { todo: "Todo 8", status: "pending" },
+    { todo: "Todo 9", status: "active" },
+    { todo: "Todo 10", status: "active" },
+    { todo: "Todo 11", status: "pending" },]
 
 export async function GET() {
     return Response.json({
-        todos:todos,
+        todos: todos,
         msg: 201
     })
 }
