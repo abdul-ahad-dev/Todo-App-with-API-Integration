@@ -1,4 +1,5 @@
 import TodoForm from "@/components/TodoForm";
+import TodoList from "@/components/TodoList";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -32,31 +33,8 @@ async function Todo() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {res?.todos?.map((item, index) => (
-            <TableRow key={item.id}>
-              <TableCell className="text-center">{index}</TableCell>
-              <TableCell className="text-center ">{item.todo}</TableCell>
-              <TableCell className="text-center capitalize">
-                {item.isComplete ? (
-                  <div className="bg-green-500 text-white rounded-full px-2 py-1 text-xs cursor-pointer active:scale-95 select-none">
-                    Active
-                  </div>
-                ) : (
-                  <div className="bg-yellow-500 text-white rounded-full px-2 py-1 text-xs cursor-pointer active:scale-95 select-none">
-                    Pending
-                  </div>
-                )}
-              </TableCell>
-              <TableCell className="flex justify-center gap-2">
-                <Button variant="outline" size="icon" className="active:scale-95">
-                  <FilePenLine className="h-4 w-4" />
-                </Button>
-
-                <Button variant="destructive" size="icon" className="active:scale-95">
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </TableCell>
-            </TableRow>
+          {res?.todos?.map((item) => (
+            <TodoList item={item} key={item.id} />
           ))}
         </TableBody>
       </Table>

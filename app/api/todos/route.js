@@ -22,12 +22,32 @@ export async function GET() {
 
 export async function POST(request) {
     const data = await request.json();
-    console.log(" todo API ==>", data);
-
     todos.push({ id: todos.length + 1, todo: data.todo, isComplete: false })
 
     return Response.json({
         todos: todos,
         msg: "Todo added successfully"
+    })
+}
+
+export async function PUT(request) {
+    const data = await request.json();
+    const todoIndex = todos.findIndex((todo) => todo.id === data.id);
+    todos[todoIndex] = data;
+
+    return Response.json({
+        todos: todos,
+        msg: "Todo updated successfully"
+    })
+}
+
+export async function DELETE(request) {
+    const data = await request.json();
+    const todoIndex = todos.findIndex((todo) => todo.id === data.id);
+    todos.splice(todoIndex, 1);
+
+    return Response.json({
+        todos: todos,
+        msg: "Todo delete successfully"
     })
 }
