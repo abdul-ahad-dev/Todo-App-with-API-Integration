@@ -33,7 +33,7 @@ async function Todo() {
         </TableHeader>
         <TableBody>
           {res?.todos?.map((item, index) => (
-            <TableRow key={index}>
+            <TableRow key={item.id}>
               <TableCell className="text-center">{index}</TableCell>
               <TableCell className="text-center ">{item.todo}</TableCell>
               <TableCell className="text-center capitalize">
