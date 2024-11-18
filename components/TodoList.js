@@ -2,11 +2,27 @@
 
 import { TableCell, TableRow } from './ui/table'
 import { Button } from './ui/button'
-import { FilePenLine, Trash2 } from 'lucide-react'
+import { ArrowUpToLine, FilePenLine, Trash2 } from 'lucide-react'
 import { deleteTodo, updateTodo } from '@/app/actions/todos';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { Input } from './ui/input';
 
-export default function TodoList({ item }) {
+export default function TodoList({ item, index }) {
+
+    const [openInput, setInput] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+
+    const handleInput = async () => {
+        setInput(!openInput)
+        setInputValue(item.todo)
+
+        if (inputValue !== null) return
+
+        let obj = { ...item }
+        obj.todo = inputValue
+        updateTodo(obj)
+    }
 
     const handleIsCompleteAction = async () => {
         let obj = { ...item }
@@ -15,7 +31,6 @@ export default function TodoList({ item }) {
     }
 
     const handleDeleteAction = async () => {
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -40,8 +55,19 @@ export default function TodoList({ item }) {
 
     return (
         <TableRow key={item.id}>
-            <TableCell className="text-center">{item.id}</TableCell>
-            <TableCell className="text-center ">{item.todo}</TableCell>
+            <TableCell className="text-center">{index + 1}</TableCell>
+            <TableCell className="text-center" >
+                {openInput
+                    ?
+                    <Input
+                        type="text"
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                        onChange={(e) => setInputValue(e.target.value)}
+                        value={inputValue} />
+                    :
+                    item.todo
+                }
+            </TableCell>
             <TableCell
                 onClick={handleIsCompleteAction}
                 className="text-center capitalize"
@@ -57,8 +83,16 @@ export default function TodoList({ item }) {
                 )}
             </TableCell>
             <TableCell className="flex justify-center gap-2">
-                <Button variant="outline" size="icon" className="active:scale-95">
-                    <FilePenLine className="h-4 w-4" />
+                <Button
+                    onClick={handleInput}
+                    variant="outline"
+                    size="icon"
+                    className="active:scale-95"
+                >
+                    {openInput
+                        ? <ArrowUpToLine className="h-4 w-4" />
+                        : <FilePenLine className="h-4 w-4" />
+                    }
                 </Button>
 
                 <Button

@@ -3,7 +3,8 @@
 import { revalidatePath } from "next/cache";
 
 export async function addTodo(formData) {
-    const todo = formData.get('todo')
+    const todo = formData.get('todo');
+    if (!todo) return
     try {
         await fetch('http://localhost:3000/api/todos', {
             method: 'POST',
@@ -31,7 +32,6 @@ export async function updateTodo(obj) {
 
 
 export async function deleteTodo(obj) {
-    console.log(" obj action ==>", obj)
     try {
         await fetch('http://localhost:3000/api/todos', {
             method: 'DELETE',

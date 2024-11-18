@@ -33,8 +33,8 @@ async function Todo() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {res?.todos?.map((item) => (
-            <TodoList item={item} key={item.id} />
+          {res?.todos?.map((item, index) => (
+            <TodoList item={item} index={index} key={item.id} />
           ))}
         </TableBody>
       </Table>
