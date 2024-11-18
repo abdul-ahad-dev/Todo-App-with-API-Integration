@@ -17,8 +17,6 @@ export default function TodoList({ item, index }) {
         setInput(!openInput)
         setInputValue(item.todo)
 
-        if (inputValue !== null) return
-
         let obj = { ...item }
         obj.todo = inputValue
         updateTodo(obj)
