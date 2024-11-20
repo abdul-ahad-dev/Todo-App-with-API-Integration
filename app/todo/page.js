@@ -1,6 +1,5 @@
 import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -10,11 +9,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { FilePenLine, Trash2 } from "lucide-react";
 
 async function Todo() {
   let res = await fetch("http://localhost:3000/api/todos");
   res = await res.json();
+  console.log("");
+  
 
   return (
     <>
