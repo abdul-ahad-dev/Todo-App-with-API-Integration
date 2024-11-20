@@ -52,7 +52,7 @@ export default function TodoList({ item, index }) {
     }
 
     return (
-        <TableRow key={item.id}>
+        <TableRow key={item._id}>
             <TableCell className="text-center">{index + 1}</TableCell>
             <TableCell className="text-center" >
                 {openInput

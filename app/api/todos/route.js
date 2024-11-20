@@ -1,6 +1,5 @@
 import { connectDB } from "@/app/lib/dbConnect";
 import TodoModel from "@/app/lib/models/TodoModel";
-import { NextResponse } from "next/server";
 
 // const todos = [
 //     { id: 1731946010001, todo: "Demo Data 1", isComplete: true },
@@ -13,36 +12,41 @@ import { NextResponse } from "next/server";
 
 
 export async function GET() {
-    try {
-        await connectDB()
-        const todos = await TodoModel.find();
-        console.log("todo==>", todo);
+    await connectDB();
+    const todos = await TodoModel.find();
 
-        return NextResponse.json({
-            todos: todos,
-            msg: 201
-        });
-    } catch (error) {
-        console.error("Error fetching todos:", error.message);
-        return NextResponse.json(
-            { error: "Failed to fetch todos", msg: error.message },
-            { status: 500 }
-        );
-    }
+    return Response.json({ todos, msg: 201 });
 }
 
 export async function POST(request) {
+    // const data = await request.json();
+    // todos.push({
+    //     id: `${Date.now()}`,
+    //     todo: data.todo,
+    //     isComplete: false
+    // })
+
+    // return Response.json({
+    //     todos: todos,
+    //     msg: "Todo added successfully"
+    // })
+    await connectDB();
+
     const data = await request.json();
-    todos.push({
-        id: `${Date.now()}`,
+
+    const todoAdded = await new TodoModel({
         todo: data.todo,
-        isComplete: false
-    })
+        isComplete: false,
+    });
+
+    await todoAdded.save();
+
+    console.log("Todo added:", todoAdded);
 
     return Response.json({
-        todos: todos,
-        msg: "Todo added successfully"
-    })
+        data: todoAdded,
+        msg: "Todo added successfully",
+    });
 }
 
 export async function PUT(request) {

@@ -7,6 +7,6 @@ const TodoSchema = new Schema({
     isComplete: Boolean,
 }, { timestamps: true });
 
-const TodoModel = mongoose.models.Todos || mongoose.model('Todos', TodoSchema);
+const TodoModel = mongoose.models.Todos || mongoose.model('todos', TodoSchema);
 
 export default TodoModel;   

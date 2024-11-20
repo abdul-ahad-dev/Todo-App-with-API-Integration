@@ -1,14 +1,15 @@
 import mongoose from "mongoose";
 
-let isConnected = false;
 
 export async function connectDB() {
+    let isConnected = false;
+    if (isConnected) return "DB is already connected.";
 
-    if (isConnected) {
-        console.log("DB is already connected.");
-        return;
+    try {
+        let connected = await mongoose.connect(process.env.MONGODB_URI);
+        console.log("DB is connected successfully..")
+        if (connected.connection.readyState == 1) isConnected = true;
+    } catch (err) {
+        console.log(err);
     }
-    let connected = await mongoose.connect(process.env.MONGODB_URL);
-    console.log("DB is connected succesfully.")
-    if (connected.connection.readyState == 1) isConnected = true;
 }

@@ -4,7 +4,6 @@ import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -13,14 +12,15 @@ import {
 async function Todo() {
   let res = await fetch("http://localhost:3000/api/todos");
   res = await res.json();
-  console.log("");
-  
+  console.log(await res.json());
 
   return (
     <>
       <div className="text-3xl p-3 text-center font-semibold font-mono">Todo</div>
 
+
       <TodoForm />
+
 
       <Table className="md:w-11/12 mx-auto border rounded-xl overflow-hidden shadow-lg">
         <TableCaption>A list of your recent todos.</TableCaption>
@@ -34,7 +34,7 @@ async function Todo() {
         </TableHeader>
         <TableBody>
           {res?.todos?.map((item, index) => (
-            <TodoList item={item} index={index} key={item.id} />
+            <TodoList item={item} index={index} key={item._id} />
           ))}
         </TableBody>
       </Table>
