@@ -12,41 +12,52 @@ import TodoModel from "@/app/lib/models/TodoModel";
 
 
 export async function GET() {
-    await connectDB();
-    const todos = await TodoModel.find();
-
-    return Response.json({ todos, msg: 201 });
+    try {
+        await connectDB();
+        const todos = await TodoModel.find();
+        console.log("Todos:", todos);
+        return Response.json({
+            todos,
+            msg: "Todos fetched successfully",
+        });
+    } catch (error) {
+        console.error("Error fetching todos:", error);
+        return Response.json({
+            todos: [],
+            msg: "Error fetching todos",
+        });
+    }
 }
 
 export async function POST(request) {
-    // const data = await request.json();
-    // todos.push({
-    //     id: `${Date.now()}`,
-    //     todo: data.todo,
-    //     isComplete: false
-    // })
-
-    // return Response.json({
-    //     todos: todos,
-    //     msg: "Todo added successfully"
-    // })
-    await connectDB();
-
     const data = await request.json();
-
-    const todoAdded = await new TodoModel({
+    todos.push({
+        id: `${Date.now()}`,
         todo: data.todo,
-        isComplete: false,
-    });
-
-    await todoAdded.save();
-
-    console.log("Todo added:", todoAdded);
+        isComplete: false
+    })
 
     return Response.json({
-        data: todoAdded,
-        msg: "Todo added successfully",
-    });
+        todos: todos,
+        msg: "Todo added successfully"
+    })
+    // await connectDB();
+
+    // const data = await request.json();
+
+    // const todoAdded = await new TodoModel({
+    //     todo: data.todo,
+    //     isComplete: false,
+    // });
+
+    // await todoAdded.save();
+
+    // console.log("Todo added:", todoAdded);
+
+    // return Response.json({
+    //     data: todoAdded,
+    //     msg: "Todo added successfully",
+    // });
 }
 
 export async function PUT(request) {

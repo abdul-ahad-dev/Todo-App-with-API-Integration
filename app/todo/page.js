@@ -9,18 +9,17 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+
 async function Todo() {
-  let res = await fetch("http://localhost:3000/api/todos");
-  res = await res.json();
-  console.log(await res.json());
+
+  let res = await fetch("http://localhost:3000/api/todos")
+  res = await res.json()
 
   return (
     <>
       <div className="text-3xl p-3 text-center font-semibold font-mono">Todo</div>
 
-
       <TodoForm />
-
 
       <Table className="md:w-11/12 mx-auto border rounded-xl overflow-hidden shadow-lg">
         <TableCaption>A list of your recent todos.</TableCaption>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex justify-center ">
       <Button>
         <Link href="/todo">Go to Todos</Link>
       </Button>
