@@ -13,7 +13,7 @@ export async function addTodo(formData) {
         revalidatePath('/todo')
     }
     catch (error) {
-        console.log(error)
+        console.log("error==>", error);
     }
 }
 
@@ -26,7 +26,7 @@ export async function updateTodo(obj) {
         revalidatePath('/todo')
     }
     catch (error) {
-        console.log(error)
+        console.log("error==>", error);
     }
 }
 
@@ -40,6 +40,6 @@ export async function deleteTodo(obj) {
         revalidatePath('/todo')
     }
     catch (error) {
-        console.log(error)
+        console.log("error==>", error);
     }
 }
