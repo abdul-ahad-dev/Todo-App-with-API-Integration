@@ -12,7 +12,7 @@ import {
 
 async function Todo() {
 
-  let res = await fetch(process.env.PUBLIC_API_URL + "/api/todos")
+  let res = await fetch(process.env.PUBLIC_API_URL)
   res = await res.json()
 
   return (
