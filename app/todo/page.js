@@ -1,5 +1,5 @@
+import dynamic from 'next/dynamic';
 import TodoForm from "@/components/TodoForm";
-import TodoList from "@/components/TodoList";
 import {
   Table,
   TableBody,
@@ -12,8 +12,10 @@ import {
 
 async function Todo() {
 
-  let res = await fetch(process.env.PUBLIC_API_URL)
-  res = await res.json()
+  let res = await fetch(process.env.PUBLIC_API_URL);
+  res = await res.json();
+
+  const TodoList = dynamic(() => import('@/components/TodoList'));
 
   return (
     <div className="px-4">
@@ -41,4 +43,4 @@ async function Todo() {
   )
 }
 
-export default Todo
+export default Todo;
