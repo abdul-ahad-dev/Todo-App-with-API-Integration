@@ -6,7 +6,7 @@ export async function addTodo(formData) {
     const todo = formData.get('todo');
     if (!todo) return
     try {
-        await fetch('http://localhost:3000/api/todos', {
+        await fetch(process.env.PUBLIC_API_URL + "/api/todos", {
             method: 'POST',
             body: JSON.stringify({ todo }),
         });
@@ -19,7 +19,7 @@ export async function addTodo(formData) {
 
 export async function updateTodo(obj) {
     try {
-        await fetch('http://localhost:3000/api/todos', {
+        await fetch(process.env.PUBLIC_API_URL + "/api/todos", {
             method: 'PUT',
             body: JSON.stringify(obj),
         });
@@ -33,7 +33,7 @@ export async function updateTodo(obj) {
 
 export async function deleteTodo(obj) {
     try {
-        await fetch('http://localhost:3000/api/todos', {
+        await fetch(process.env.PUBLIC_API_URL + "/api/todos", {
             method: 'DELETE',
             body: JSON.stringify(obj),
         });

@@ -7,7 +7,7 @@ export default async function TodoForm() {
     return (
         <form
             action={addTodo}
-            className="flex md:w-11/12 mx-auto py-4 items-center space-x-2"
+            className="flex md:w-11/12 mx-auto py-4 my-2 items-center space-x-2"
         >
             <Input type="text" name="todo" placeholder="Add Todos" />
             <Button type="submit">Add Todo</Button>

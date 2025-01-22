@@ -12,12 +12,12 @@ import {
 
 async function Todo() {
 
-  let res = await fetch("http://localhost:3000/api/todos")
+  let res = await fetch(process.env.PUBLIC_API_URL + "/api/todos")
   res = await res.json()
 
   return (
-    <>
-      <div className="text-3xl p-3 text-center font-semibold font-mono">Todo</div>
+    <div className="px-4">
+      <div className="text-4xl p-3 text-center font-semibold font-mono">Todo</div>
 
       <TodoForm />
 
@@ -37,7 +37,7 @@ async function Todo() {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   )
 }
 
